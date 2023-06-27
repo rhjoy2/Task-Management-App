@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Management App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Task Management App</h1>
+  <div id="taskForm">
+    <h2>Add New Task</h2>
+    <form id="addTaskForm">
+      <label for="name">Task:</label>
+      <input type="text" id="name" name="name" required>
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" required></textarea>
+      <label for="dueDate">Due Date:</label>
+      <input type="date" id="dueDate" name="dueDate" required>
+      <label for="priority">Priority:</label>
+      <select id="priority" name="priority">
+        <option value="Low">Low</option>
+        <option value="Medium" selected>Medium</option>
+        <option value="High">High</option>
+      </select>
+      <label for = "assignedUser">Assigned to</label>
+      <textarea id="assignedUser" name = "assignedUser"></textarea>
+      <button type="submit">Add Task</button>
+    </form>
+  </div>
+  <section id="taskList"></section>
+
+  <script src="taskM.js"></script>
+</body>
+</html>
