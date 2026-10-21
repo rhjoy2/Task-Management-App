@@ -1,0 +1,48 @@
+name: iOS app
+
+on:
+  push:
+    paths: ["iOS/**", ".github/workflows/ios.yml"]
+  pull_request:
+    paths: ["iOS/**", ".github/workflows/ios.yml"]
+  workflow_dispatch:
+
+jobs:
+  core-tests:
+    name: Core logic tests (Linux)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: iOS/DoseDay
+    steps:
+      - uses: actions/checkout@v4
+      - run: swift --version
+      - run: swift test
+
+  app:
+    name: Build and test app (iOS Simulator)
+    runs-on: macos-15
+    defaults:
+      run:
+        working-directory: iOS/DoseDay
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pick a simulator
+        id: sim
+        run: |
+          xcodebuild -version
+          id=$(xcrun simctl list devices available --json | python3 -c '
+          import json, sys
+          devices = json.load(sys.stdin)["devices"]
+          ios = sorted((r for r in devices if "iOS" in r), key=lambda r: [int(p) for p in r.rsplit("iOS-", 1)[1].split("-")])
+          print(next(d["udid"] for d in devices[ios[-1]] if d["name"].startswith("iPhone")))
+          ')
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+      - name: Build and test
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -project DoseDay.xcodeproj \
+            -scheme DoseDay \
+            -destination "id=${{ steps.sim.outputs.id }}" \
+            CODE_SIGNING_ALLOWED=NO
