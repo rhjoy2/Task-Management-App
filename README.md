@@ -7,6 +7,6 @@ Database: MongoDB Atlas
 Additional Tools: 
 Express.js  JSON Web Tokens (JWT) BCrypt
 
-## iOS app: DoseDay
+## DoseDay website
 
-`iOS/DoseDay` contains **DoseDay**, a private, offline medication reminder and tracker for iPhone. See [iOS/DoseDay/README.md](iOS/DoseDay/README.md).
+`web/` contains **DoseDay**, a free, private medication reminder and tracker that runs in the browser. See [web/README.md](web/README.md).

@@ -1,0 +1,11 @@
+{
+  "name": "doseday",
+  "private": true,
+  "type": "module",
+  "description": "DoseDay: a private medication reminder and tracker that runs in the browser.",
+  "scripts": {
+    "start": "node tests/serve.js",
+    "test": "TZ=America/New_York node --test tests/core.test.js",
+    "test:e2e": "node tests/e2e.js"
+  }
+}

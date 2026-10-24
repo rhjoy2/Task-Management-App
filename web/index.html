@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DoseDay</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="DoseDay is a free, private medication reminder and tracker. A daily checklist, reminders, refill warnings and a history to share with your doctor. Your data stays in your browser.">
+<meta name="theme-color" content="#f3f6f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1513" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b7a5c'/%3E%3Crect x='14' y='25' width='36' height='14' rx='7' transform='rotate(-35 32 32)' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="brand" href="#today" aria-label="DoseDay, today">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><g transform="rotate(-35 16 16)"><rect class="cap-a" x="3" y="10" width="26" height="12" rx="6"/><path class="cap-b" d="M16 10H9a6 6 0 0 0 0 12h7z"/></g></svg>
+      <span>DoseDay</span>
+    </a>
+    <nav class="tabs" aria-label="Sections">
+      <a href="#today" data-tab="today">Today</a>
+      <a href="#medications" data-tab="medications">Medications</a>
+      <a href="#history" data-tab="history">History</a>
+      <a href="#preferences" data-tab="preferences">Preferences</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="page" tabindex="-1">
+  <noscript><p class="notice">DoseDay needs JavaScript turned on to work.</p></noscript>
+  <p class="loading">Loading your medications…</p>
+</main>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<dialog id="editor" aria-labelledby="editor-title">
+  <form id="editor-form" method="dialog" novalidate>
+    <header class="dialog-head">
+      <h2 id="editor-title">New medication</h2>
+      <button type="button" class="icon-btn" data-action="close-editor" aria-label="Close">✕</button>
+    </header>
+
+    <div class="dialog-body">
+      <div class="field">
+        <label for="f-name">Name</label>
+        <input id="f-name" name="name" autocomplete="off" placeholder="e.g. Metformin" required maxlength="80">
+      </div>
+      <div class="field">
+        <label for="f-dosage">Dose <span class="hint">optional</span></label>
+        <input id="f-dosage" name="dosage" autocomplete="off" placeholder="e.g. 500 mg, 1 tablet, 2 puffs" maxlength="60">
+      </div>
+
+      <fieldset class="field">
+        <legend>Colour</legend>
+        <div class="swatches" id="f-colors"></div>
+      </fieldset>
+
+      <fieldset class="field">
+        <legend>Dose times</legend>
+        <ul class="time-list" id="f-times"></ul>
+        <button type="button" class="btn btn-quiet" data-action="add-time">+ Add a time</button>
+      </fieldset>
+
+      <div class="field">
+        <label for="f-repeat">Repeat</label>
+        <select id="f-repeat" name="repeat">
+          <option value="daily">Every day</option>
+          <option value="weekly">On certain days</option>
+        </select>
+      </div>
+      <fieldset class="field" id="f-days-wrap" hidden>
+        <legend>Days</legend>
+        <div class="day-picks" id="f-days"></div>
+      </fieldset>
+
+      <div class="field">
+        <label for="f-start">Starts</label>
+        <input id="f-start" name="start" type="date" required>
+      </div>
+
+      <fieldset class="field supply">
+        <legend>Refills</legend>
+        <label class="check"><input id="f-track" name="track" type="checkbox"> Count what's left and warn me before I run out</label>
+        <div class="supply-grid" id="f-supply" hidden>
+          <div class="field">
+            <label for="f-left">Tablets or doses left</label>
+            <input id="f-left" name="left" type="number" min="0" max="9999" step="1" inputmode="numeric">
+          </div>
+          <div class="field">
+            <label for="f-per">Used per dose</label>
+            <input id="f-per" name="per" type="number" min="1" max="50" step="1" inputmode="numeric">
+          </div>
+          <div class="field">
+            <label for="f-warn">Warn this many days ahead</label>
+            <input id="f-warn" name="warn" type="number" min="0" max="90" step="1" inputmode="numeric">
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="f-notes">Notes <span class="hint">optional</span></label>
+        <textarea id="f-notes" name="notes" rows="2" maxlength="300" placeholder="e.g. Take with food"></textarea>
+      </div>
+
+      <div class="edit-only" id="f-edit-only" hidden>
+        <label class="check"><input id="f-archived" name="archived" type="checkbox"> Stopped taking this (keeps its history, ends reminders)</label>
+        <p class="hint" id="f-schedule-note">Schedule changes apply from today. Past history is kept.</p>
+        <div class="danger-zone">
+          <button type="button" class="btn btn-danger-quiet" data-action="ask-delete">Delete medication…</button>
+          <div class="confirm" id="f-confirm" hidden>
+            <p>This removes the medication and all of its history. To keep the history, tick “Stopped taking this” instead.</p>
+            <div class="row">
+              <button type="button" class="btn btn-danger" data-action="confirm-delete">Delete medication and history</button>
+              <button type="button" class="btn btn-quiet" data-action="cancel-delete">Keep it</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="form-error" id="f-error" role="alert" hidden></p>
+    </div>
+
+    <footer class="dialog-foot">
+      <button type="button" class="btn btn-quiet" data-action="close-editor">Cancel</button>
+      <button type="submit" class="btn btn-primary" id="f-save">Save</button>
+    </footer>
+  </form>
+</dialog>
+</body>
+</html>
