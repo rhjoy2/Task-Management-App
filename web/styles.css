@@ -2,34 +2,37 @@
    a checklist; each medication is drawn like a pharmacy label (colour band, Rx
    line, mono "sig" line with the dosing times). */
 :root {
-  --paper: #f3f6f4;
+  --paper: #fbf7fc;
   --surface: #ffffff;
-  --ink: #14211d;
-  --muted: #56665f;
-  --line: #d3ddd8;
-  --line-strong: #14211d;
+  --ink: #2b2136;
+  --muted: #6d6079;
+  --line: #ebdff0;
+  --line-strong: #4a3a5c;
 
-  --rx: #0b7a5c;
+  --rx: #7b5ea7;
   --rx-ink: #ffffff;
-  --rx-soft: #dcefe6;
+  --rx-soft: #efe7f8;
+  --pink: #e98fb0;
+  --pink-soft: #fde7ef;
+  --wash: #fbe4ee;
 
-  --due: #985500;
-  --due-soft: #fcebd0;
-  --missed: #b0341e;
-  --missed-soft: #f8e1db;
-  --skip: #59636b;
-  --skip-soft: #e5e9ec;
+  --due: #9a5716;
+  --due-soft: #fbecdc;
+  --missed: #b4344f;
+  --missed-soft: #fbe1e7;
+  --skip: #6b6378;
+  --skip-soft: #eee9f2;
 
-  --med-green: #1f8a5b;
-  --med-blue: #2763c4;
-  --med-violet: #7348c2;
-  --med-rose: #c23c74;
-  --med-amber: #c27a00;
-  --med-teal: #12828c;
-  --med-red: #c63b2b;
-  --med-slate: #4f5f6b;
+  --med-green: #3e8f6e;
+  --med-blue: #4f6fc6;
+  --med-violet: #8a5cc9;
+  --med-rose: #d0608c;
+  --med-amber: #c48322;
+  --med-teal: #2f8c96;
+  --med-red: #c4475a;
+  --med-slate: #6a6480;
 
-  --shadow: 0 1px 2px rgb(20 33 29 / 0.06), 0 8px 24px rgb(20 33 29 / 0.08);
+  --shadow: 0 1px 2px rgb(74 52 96 / 0.06), 0 10px 28px rgb(123 94 167 / 0.10);
 
   --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
   --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
@@ -45,58 +48,64 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #0e1513;
-    --surface: #16201d;
-    --ink: #e3ece8;
-    --muted: #9aaba4;
-    --line: #2a3733;
-    --line-strong: #a9bab3;
-    --rx: #3cc497;
-    --rx-ink: #062018;
-    --rx-soft: #173a2e;
-    --due: #f0a63a;
-    --due-soft: #3b2a10;
-    --missed: #f07b63;
-    --missed-soft: #3e1d17;
-    --skip: #a5b0b8;
-    --skip-soft: #262e33;
-    --med-green: #46c48a;
-    --med-blue: #6c9cf0;
-    --med-violet: #a688ec;
-    --med-rose: #ef7aa9;
-    --med-amber: #f0b13d;
-    --med-teal: #3dbfc9;
-    --med-red: #f27766;
-    --med-slate: #9fb0bd;
+    --paper: #17121d;
+    --surface: #221a2b;
+    --ink: #f1e8f5;
+    --muted: #b6a7c3;
+    --line: #3a2e47;
+    --line-strong: #c9b6da;
+    --rx: #c4a8f0;
+    --rx-ink: #1e1429;
+    --rx-soft: #33264a;
+    --pink: #f4b4cb;
+    --pink-soft: #3d2533;
+    --wash: #2a1b2c;
+    --due: #f0b06a;
+    --due-soft: #3b2a18;
+    --missed: #f2849a;
+    --missed-soft: #42202a;
+    --skip: #b3aabf;
+    --skip-soft: #2c2536;
+    --med-green: #6fcb9f;
+    --med-blue: #8ba5f2;
+    --med-violet: #b995f0;
+    --med-rose: #f39cbd;
+    --med-amber: #f1bd62;
+    --med-teal: #6dcbd4;
+    --med-red: #f2879a;
+    --med-slate: #b2abc6;
     --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 28px rgb(0 0 0 / 0.35);
     color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --paper: #0e1513;
-  --surface: #16201d;
-  --ink: #e3ece8;
-  --muted: #9aaba4;
-  --line: #2a3733;
-  --line-strong: #a9bab3;
-  --rx: #3cc497;
-  --rx-ink: #062018;
-  --rx-soft: #173a2e;
-  --due: #f0a63a;
-  --due-soft: #3b2a10;
-  --missed: #f07b63;
-  --missed-soft: #3e1d17;
-  --skip: #a5b0b8;
-  --skip-soft: #262e33;
-  --med-green: #46c48a;
-  --med-blue: #6c9cf0;
-  --med-violet: #a688ec;
-  --med-rose: #ef7aa9;
-  --med-amber: #f0b13d;
-  --med-teal: #3dbfc9;
-  --med-red: #f27766;
-  --med-slate: #9fb0bd;
+  --paper: #17121d;
+  --surface: #221a2b;
+  --ink: #f1e8f5;
+  --muted: #b6a7c3;
+  --line: #3a2e47;
+  --line-strong: #c9b6da;
+  --rx: #c4a8f0;
+  --rx-ink: #1e1429;
+  --rx-soft: #33264a;
+  --pink: #f4b4cb;
+  --pink-soft: #3d2533;
+  --wash: #2a1b2c;
+  --due: #f0b06a;
+  --due-soft: #3b2a18;
+  --missed: #f2849a;
+  --missed-soft: #42202a;
+  --skip: #b3aabf;
+  --skip-soft: #2c2536;
+  --med-green: #6fcb9f;
+  --med-blue: #8ba5f2;
+  --med-violet: #b995f0;
+  --med-rose: #f39cbd;
+  --med-amber: #f1bd62;
+  --med-teal: #6dcbd4;
+  --med-red: #f2879a;
+  --med-slate: #b2abc6;
   --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 28px rgb(0 0 0 / 0.35);
   color-scheme: dark;
 }
@@ -108,6 +117,8 @@ html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   background: var(--paper);
+  background-image: radial-gradient(60rem 26rem at 100% -4rem, var(--wash), transparent 70%), radial-gradient(50rem 24rem at -10% 0, var(--rx-soft), transparent 70%);
+  background-repeat: no-repeat;
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--step-0);
@@ -167,7 +178,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .brand-mark { width: 28px; height: 28px; }
 .brand-mark .cap-a { fill: var(--surface); stroke: var(--rx); stroke-width: 2; }
-.brand-mark .cap-b { fill: var(--rx); }
+.brand-mark .cap-b { fill: var(--pink); }
 
 .tabs { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; max-width: 100%; }
 .tabs a {
@@ -220,7 +231,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   align-items: center;
   gap: 10px;
 }
-.section > h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.section > h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--pink), var(--line) 40%); }
 
 /* ---------------------------------------------------------------- buttons */
 
@@ -274,12 +285,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
   gap: 10px 16px;
   padding: 14px 16px;
   border-radius: var(--radius);
-  background: var(--rx-soft);
-  border: 1px solid color-mix(in srgb, var(--rx) 30%, transparent);
+  background: var(--pink-soft);
+  border: 1px solid color-mix(in srgb, var(--pink) 45%, transparent);
 }
 .banner p { flex: 1 1 18rem; min-width: 0; }
 .banner.warn { background: var(--due-soft); border-color: color-mix(in srgb, var(--due) 35%, transparent); }
-.banner.sample { background: var(--surface); border: 1.5px dashed var(--line-strong); }
+.banner.sample { background: var(--surface); border: 1.5px dashed var(--pink); }
 .banner strong { font-weight: 700; }
 
 /* ---------------------------------------------------------------- today summary */
@@ -299,7 +310,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .ring { width: 88px; height: 88px; position: relative; }
 .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-.ring .track { fill: none; stroke: var(--rx-soft); stroke-width: 9; }
+.ring .track { fill: none; stroke: var(--pink-soft); stroke-width: 9; }
 .ring .fill { fill: none; stroke: var(--rx); stroke-width: 9; stroke-linecap: round; transition: stroke-dashoffset 0.5s ease; }
 .ring .pct {
   position: absolute; inset: 0;
@@ -446,7 +457,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* ---------------------------------------------------------------- history */
 
-.segmented { display: inline-flex; padding: 3px; gap: 3px; background: var(--skip-soft); border-radius: 999px; }
+.segmented { display: inline-flex; padding: 3px; gap: 3px; background: var(--pink-soft); border-radius: 999px; }
 .segmented button {
   border: 0; background: transparent; cursor: pointer;
   padding: 7px 14px; border-radius: 999px;
@@ -540,7 +551,7 @@ dialog {
   color: var(--ink);
   box-shadow: var(--shadow);
 }
-dialog::backdrop { background: rgb(10 20 16 / 0.45); }
+dialog::backdrop { background: rgb(43 33 54 / 0.45); }
 dialog form { display: flex; flex-direction: column; max-height: inherit; }
 .dialog-head, .dialog-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; }
 .dialog-head { border-bottom: 1px solid var(--line); }
@@ -629,7 +640,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--rx); outline: no
 .toast p { flex: 1 1 12rem; min-width: 0; }
 .toast .btn { min-height: 36px; background: transparent; color: var(--paper); border-color: color-mix(in srgb, var(--paper) 40%, transparent); }
 .toast .btn.btn-primary { background: var(--rx); border-color: var(--rx); color: var(--rx-ink); }
-.toast.reminder { border-left: 6px solid var(--due); }
+.toast.reminder { border-left: 6px solid var(--pink); }
 @keyframes toast-in { from { transform: translateY(12px); opacity: 0.4; } }
 
 /* ---------------------------------------------------------------- footer */
